@@ -26,11 +26,10 @@ client.once('ready', () => {
 });
 
 // CONTINUE HERE!!!!!!!!
-client.on('guildMemberAdd', async newMember => {
-  console.log;
+client.on('guildMemberAdd', async member => {
   const command = client.commands.get('request');
   const args = 'trial';
-  command.execute(newMember, args);
+  command.execute(member, args, client);
 });
 
 client.on('message', async message => {
