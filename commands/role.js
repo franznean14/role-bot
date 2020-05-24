@@ -1,15 +1,11 @@
 /* eslint-disable no-unused-vars */
-const questions = require('./request.json');
+const questions = require('./role.questions.json');
 
 module.exports = {
 	name: 'request',
-    description: 'Quiz bot',
-    args: true,
-    usage: 'trial/paid',
-    cooldown: 5,
+    description: 'Role-assigner bot that collects new server member information through DM then assigns a role afterwards.',
 	async execute(member, args, client) {
         const response = [];
-        if(args !== 'trial' && args !== 'paid') return;
         for(let i = 0; i < questions.length; i++) {
             const res = await this.asyncQuestions(member, i, client);
             response[i] = res;
@@ -20,7 +16,7 @@ module.exports = {
         // gets the channel in the guild where the member joined to send an announcement after the member provided his information.
         member.guild.channels.cache.get('712935520321404970').send(`Thank you, ${username}, you will be assigned a trial role in a bit.`);
         // sends the member a message containing the information he provided.
-        member.send(`Thank you, ${first} ${last}, for providing your:\n1. Email - ${email},\n2. Contact - ${contact}`);
+        member.send(`Thank you, ${first} ${last}, your role has been upgrade for a trial of 3 days! ${email} ${contact}`);
     },
     asyncQuestions(member, index, client) {
         // filter for await message for the commented code below
@@ -28,7 +24,6 @@ module.exports = {
         return new Promise((resolve, reject) => {
             // role-bot will direct message the new member
             member.send(questions[index].question).then(() =>{
-
                 try {
                     // 'on Message' function that enables the new member to DM his responses
                     client.on('message', async message => {

@@ -25,7 +25,7 @@ client.once('ready', () => {
   console.log('Ready!');
 });
 
-// CONTINUE HERE!!!!!!!!
+// runs when a new member joins the server
 client.on('guildMemberAdd', async member => {
   const command = client.commands.get('request');
   const args = 'trial';
