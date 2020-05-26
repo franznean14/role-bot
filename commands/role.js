@@ -31,8 +31,8 @@ module.exports = {
         const { withValidation, validation, question, name } = questions[index];
         return new Promise((resolve, reject) => {
             this.index = index;
-            console.log(`index: ${index}`);
-            console.log(`promise index: ${this.index}`);
+            // console.log(`index: ${index}`);
+            // console.log(`promise index: ${this.index}`);
             // role-bot will direct message the new member
             member.send(question).then(async () =>{
                 console.log(users);
@@ -46,8 +46,8 @@ module.exports = {
                         // then checks whether the response was provided by the new member user who just joined
                         if(authorId !== memberId || message.channel.type !== 'dm') return;
                         if(realUser[`${name}`]) return;
-                        console.log(withValidation);
-                        console.log(validation);
+                        // console.log(withValidation);
+                        // console.log(validation);
                         const isValid = withValidation ? this.validate(content, validation) : true;
                         if(!isValid) {
                             return member.send('Please provide a valid email address.');
@@ -63,7 +63,7 @@ module.exports = {
         });
     },
     validate(content, rule) {
-        console.log('validating');
+        // console.log('validating');
         return rule.test(content);
     },
 };
