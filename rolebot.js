@@ -28,8 +28,7 @@ client.once('ready', () => {
 // runs when a new member joins the server
 client.on('guildMemberAdd', async member => {
   const command = client.commands.get('request');
-  const args = 'trial';
-  command.execute(member, args, client);
+  command.execute(member, client);
 });
 
 client.on('message', async message => {
